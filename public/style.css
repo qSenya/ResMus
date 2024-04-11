@@ -1,0 +1,213 @@
+@font-face {
+    font-family: "Roboto";
+    src: url(./fonts/RobotoMono-VariableFont_wght.ttf);
+}
+
+
+* {
+    list-style: none;
+    text-decoration: none;
+    font-family:'Roboto';
+}
+
+body {
+    background-color: rgb(48, 48, 48);
+}
+
+.pad {
+    padding: 0 10%;
+}
+
+a   {
+    color: black;
+    text-decoration: none;
+
+}
+
+a:visited {
+    color: white;
+}
+
+.but1 {
+    padding: 5px;
+    color: white;
+    border-radius: 9px;
+}
+
+/* Хэдер */
+
+header {
+    display: flex;
+    width: 100%;
+    background-color: rgb(48, 48, 48);
+    padding: 0 5%;
+    height: 75px;
+    margin-bottom: 100PX;
+}
+
+nav {
+    display: flex;justify-content: space-between;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+
+.logo {
+    font-size: 40px;
+    color: white;
+}
+
+
+
+
+
+.card {
+    width: 300px;
+    padding: 0px;
+    margin: 0px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+}
+
+/* 1 блок */
+
+.block1-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100PX
+}
+
+.block1-image-container {
+    width: 100%;
+} 
+
+.block1-image {
+    width: 100%;
+}
+
+.block1-text-container {
+    width: 100%;
+}
+
+.h1-container {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-size: 70px;
+    color: rgb(198, 11, 67);
+}
+
+h2 {
+    font-size: 60px;
+    color: rgb(198, 11, 67);
+}
+.block1-text-container {
+    font-size: 60px;
+}
+
+.form-container {
+    display: flex;
+    width: 100%;
+}
+
+.btn2 {
+    display: inline;
+    background-color: rgb(198, 11, 67);
+    border-radius: 9px;
+    padding: 5px 10px;
+    margin: auto;
+}
+
+.pointer {
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    margin-top:10px;
+}
+
+.form-sign {
+    width: 70%;
+    margin: auto ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lk-content-container {
+    display: flex;
+    width: 100%;
+
+}
+
+.panel-container {
+    width: 30%;
+}
+
+.add-song-container {
+    width: 100%;
+    display: flex;
+    margin-bottom: 175px;
+}
+
+.center-btn {
+    background-color: rgb(54,6,130);
+    color: white;
+}
+
+.song-image {
+    width: 150px;
+    height: 150px;
+}
+
+.song-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.song-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 40px 10px 40px;
+}
+
+.song-actions a:visited {
+    color: black;
+}
+
+.red {
+    color: red;
+}
+
+.red:visited {
+    color: red;
+}
+
+.lk-nav {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    padding: 0 10%;
+}
+
+.lk-nav li {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.personal-container {
+    display: flex;
+    width: 100%;
+}
