@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 06 2024 г., 04:30
+-- Время создания: Апр 11 2024 г., 03:24
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -37,6 +37,13 @@ CREATE TABLE `complaints` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `complaints`
+--
+
+INSERT INTO `complaints` (`id`, `comment`, `song_id`, `user_id`, `status_id`, `created_at`, `updated_at`) VALUES
+(1, 'ddddddd', 1, 1, 1, '2024-04-10 15:58:34', '2024-04-10 15:58:34');
+
 -- --------------------------------------------------------
 
 --
@@ -55,8 +62,8 @@ CREATE TABLE `genres` (
 --
 
 INSERT INTO `genres` (`id`, `title`, `created_at`, `updated_at`) VALUES
-(1, 'Рок', NULL, NULL),
-(2, 'Рэп', NULL, NULL);
+(1, 'Рок\r\n', NULL, NULL),
+(2, 'Реп', '2024-04-10 18:26:25', '2024-04-10 18:26:25');
 
 -- --------------------------------------------------------
 
@@ -75,13 +82,13 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(15, '2014_10_12_000000_create_roles_table', 1),
-(16, '2014_10_12_000001_create_users_table', 1),
-(17, '2014_10_12_000003_create_genres_table', 1),
-(18, '2014_10_12_000004_create_songs_table', 1),
-(19, '2014_10_12_000005_create_statuses_table', 1),
-(20, '2014_10_12_000006_create_complaints_table', 1),
-(21, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(36, '2014_10_12_000000_create_roles_table', 1),
+(37, '2014_10_12_000001_create_users_table', 1),
+(38, '2014_10_12_000003_create_genres_table', 1),
+(39, '2014_10_12_000004_create_songs_table', 1),
+(40, '2014_10_12_000005_create_statuses_table', 1),
+(41, '2014_10_12_000006_create_complaints_table', 1),
+(42, '2019_12_14_000001_create_personal_access_tokens_table', 1);
 
 -- --------------------------------------------------------
 
@@ -138,6 +145,14 @@ CREATE TABLE `songs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `songs`
+--
+
+INSERT INTO `songs` (`id`, `nickname`, `name`, `image`, `song`, `genre_id`, `created_at`, `updated_at`) VALUES
+(1, 'awd', 'Кукушка', 'img/aEB5A3mJOxlo7eFL9j1xe8jOM5oQttfNLVO6014o.jpg', 'songs/IN8KA2xEauXraFOmXzxudltpcL3FY6RSeQt8AaT8.mp3', 1, '2024-04-10 15:57:10', '2024-04-10 19:10:39'),
+(3, 'awd', 'Город герой', 'img/SjI2v5b6eYAjEDYODgSXtIbQNoW9nWphxkboOX2R.jpg', 'songs/anrK2UFISBcbf5MzjZiDWBlcKJhLcwAsaYlckuu1.mp3', 1, '2024-04-10 19:38:39', '2024-04-10 19:38:39');
+
 -- --------------------------------------------------------
 
 --
@@ -149,6 +164,13 @@ CREATE TABLE `statuses` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `statuses`
+--
+
+INSERT INTO `statuses` (`id`, `title`) VALUES
+(1, 'Ожидание');
+
 -- --------------------------------------------------------
 
 --
@@ -159,6 +181,7 @@ CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
   `role` bigint UNSIGNED NOT NULL,
   `nickname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `complaints_count` int NOT NULL DEFAULT '0',
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `login` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -170,9 +193,9 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role`, `nickname`, `avatar`, `login`, `password`, `created_at`, `updated_at`) VALUES
-(2, 2, 'awd', 'default_avatar.jpeg', 'awd', '$2y$12$JYrtEJjfThTFwppHcYZjQ.jivLkXSN7xiCEh72LPy1uacnToQBifS', '2024-04-05 21:28:30', '2024-04-05 21:28:30'),
-(3, 2, 'kolobokMC', 'default_avatar.jpeg', 'kolobok', '$2y$12$8I.h8Y3T5m7Bc/RmzCUupei.IRfXsyzit8tKWGmAhZZcRDOwI6eZu', '2024-04-05 21:52:52', '2024-04-05 21:52:52');
+INSERT INTO `users` (`id`, `role`, `nickname`, `complaints_count`, `avatar`, `login`, `password`, `created_at`, `updated_at`) VALUES
+(1, 2, 'awd', 0, 'avatar/default_avatar.jpeg', 'awd', '$2y$12$AtdIs9HGMuWxJZdLMbWj1uYnmEtA.rKRl0mLES6G6pF9lcwAc14Nq', '2024-04-10 15:56:35', '2024-04-10 15:56:35'),
+(2, 2, '123', 0, 'avatar/default_avatar.jpeg', '123', '$2y$12$TpSApBEveiV3VTKrE6V2i./dSy1QaQ/zjZ19suaf6Q9O6QU18xBvC', '2024-04-10 19:32:32', '2024-04-10 19:32:32');
 
 --
 -- Индексы сохранённых таблиц
@@ -243,7 +266,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `genres`
@@ -255,7 +278,7 @@ ALTER TABLE `genres`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`
@@ -273,19 +296,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT для таблицы `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
