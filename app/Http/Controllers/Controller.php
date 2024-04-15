@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Complaint;
 use App\Models\Genre;
 use App\Models\Song;
+use App\Models\User;
 use GuzzleHttp\Psr7\Query;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -70,13 +71,16 @@ class Controller extends BaseController
         ]);
 
     }
+    
 
     function change_song(Request $request, Song $song) {
 
         $request->validate([
             'name' => 'required',
+            'image'=>'extensions:jpg,jpeg,png',
         ], [
             'name.required'=> 'Название не может быть пустым',
+            'image'=>'Обложка должна быть форматом jpeg jpg или png'
         ]);
 
         if($request->image !== null) {
@@ -106,6 +110,9 @@ class Controller extends BaseController
     }
 
     function create_complaint(Request $request) {
+
+        $song_id = $request->song_id;
+
         $request->validate([
             'comment'=>'required',
         ], [
@@ -119,6 +126,7 @@ class Controller extends BaseController
             "status_id" => 1,
         ]);
         if($song){
+            Song::where('id', $song_id)->increment('complaints_count', 1);
             return redirect('/')->with('success_complaint', "Жалоба успешно отправлена!");
         } else {
             return redirect()->back();
@@ -135,14 +143,14 @@ class Controller extends BaseController
 
     }
 
-    public function complaint_index(){
-        $user_id = Auth::user()->id;
-        $complaints = Complaint::where("user_id", $user_id)->paginate(3);
-        $user = DB::table("complaints")->where("user_id", $user_id)->join("songs", "songs.id", "=", "complaints.song_id")->get();
-        dd($user);
-        return view("complaints", ["complaints" => $complaints]);
-    }
+    // public function complaint_index(){
+    //     $user_id = Auth::user()->id;
+    //     $complaints = Complaint::where("user_id", $user_id)->paginate(3);
+    //     $user = DB::table("complaints")->where("user_id", $user_id)->join("songs", "songs.id", "=", "complaints.song_id")->get();
+    //     dd($user);
+    //     return view("complaints", ["complaints" => $complaints]);
+    // }
         
-
+    
 
 }

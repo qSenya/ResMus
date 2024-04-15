@@ -17,4 +17,6 @@ class Song extends Model
         'updated_at',
         'genre_id'
     ];
+
+
 }

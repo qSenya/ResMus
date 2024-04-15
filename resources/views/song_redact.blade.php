@@ -5,7 +5,7 @@
         <h1>Редактирование песни</h1>
     </div>
       <div class="form-container">
-        <form class="form-sign" action="/redact/{{$song->id}}" method="post">
+        <form class="form-sign" action="/redact/{{$song->id}}" method="post" enctype="multipart/form-data">
           @csrf 
           @if ($errors->any())
           <div class="alert alert-danger">
@@ -18,7 +18,7 @@
           @endif
             <div class="mb-3">
               <label for="name" class="form-label">Название</label>
-              <input type="text" name="name" class="form-control" id="name" value="{{$song->name}}">
+              <input type="text" name="name" pattern="[A-Za-z0-9]+" class="form-control" id="name" value="{{$song->name}}">
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Обложка</label>

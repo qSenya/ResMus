@@ -7,28 +7,33 @@
 </div>
   <div class="form-container">
     <form class="form-sign" action="/signin_validate" method="POST">
-      @csrf
-            
+      @csrf 
       @if(session('success_reg'))
       <div class="alert alert-success" role="alert">
       {{session('success_reg')}}
       </div>
       @endif
-      @error('confirm_pass')
-      <div class="alert alert-danger" role="alert">{{ $message }}</div>
-    @enderror
       @if(session('error'))
       <div class="alert alert-danger" role="alert">
       {{session('error')}}
       </div>
       @endif
+      @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+      @endif
         <div class="mb-3">
-          <label for="login" class="form-label">Логин</label>
-          <input type="text" name="login" class="form-control" id="login">
+          <label for="login" class="form-label">email</label>
+          <input type="email" name="email" class="form-control" id="email">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Пароль</label>
-          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+          <input type="password" name="password" pattern="[A-Za-z0-9]+" class="form-control" id="exampleInputPassword1">
         </div>
         <button class="btn2" type="submit" class="btn btn-primary">Войти</button>
         <a class="btn-primary btn1 pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -54,13 +59,14 @@
           </div>
           @endif
           <div class="mb-3">
-            <input placeholder="Логин(должен быть уникальным)" required type="text" name="login" class="form-control" id="login">
+            <p style="font-size: 11px;">Используйте цифры или буквы латинского алфавита</p>
+            <input placeholder="email(должен быть уникальным)"required type="email" name="email" class="form-control" id="email">
           </div>
           <div class="mb-3">
-            <input placeholder="Ник(должен быть уникальным)" required type="text" name="nickname" class="form-control" id="nickname">
+            <input placeholder="Ник(должен быть уникальным)" pattern="[A-Za-z0-9]+" required type="text" name="nickname" class="form-control" id="nickname">
           </div>
           <div class="mb-3">
-            <input placeholder="Пароль" type="password" required name="password" class="form-control" id="password">
+            <input placeholder="Пароль" type="password" pattern="[A-Za-z0-9]+" required name="password" class="form-control" id="password">
           </div>
           <div class="mb-3">
             <input placeholder="Повторите пароль" required type="password" name="confirm_pass" class="form-control" id="confirm_pass">

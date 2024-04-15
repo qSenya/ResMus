@@ -1,6 +1,11 @@
 @include('header')
 
 <section>
+  @if(session('success_redact_prof'))
+  <div class="alert  alert-success" role="alert">
+  {{session('success_redact_prof')}}
+  </div>
+  @endif
   @if(session('success_song'))
   <div class="alert  alert-success" role="alert">
   {{session('success_song')}}
@@ -36,8 +41,32 @@
     </div>
     @endif
     <div class="h1-container">
-        <h1>Личный кабинет</h1>
+      <h1>Личный кабинет</h1>
+  </div>
+@foreach ($user_info as $user)
+<div class="lk-info-container">
+    <div class="mb-3 lk-card">
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Персональная информация</h5>
+            <hr>
+            <p class="card-text">Псевдоним: {{$user->nickname}}</p>
+            <p class="card-text">email: {{$user->email}}</p>
+            @foreach ($count as $complaints)
+            <p class="card-text">Количество жалоб на ваши песни: {{$complaints->complaints}}</p>
+            @endforeach
+            <p class="card-text">Дата регистрации: {{$user->created_at->format("d-m-Y")}}</p>
+              <a class="btn2 pointer center-btn" href="/lk-redact/{{$user->id}}">
+                Сменить пароль
+              </a>
+          </div>
+        </div>
+      </div>
     </div>
+</div>
+@endforeach
+
         {{-- @foreach ($user as $itemm)
     <div class="personal-container">
       <div class="avatar-container">
@@ -76,13 +105,12 @@
                         Удалить
                     </a>
                 </div>
-              </div>
+            </div>
               @endforeach
+              {{ $songs->withQueryString()->links('pagination::bootstrap-5') }}
               @endif
         </div>
-
     </div>
-</div>
 
 </section>
 
@@ -123,5 +151,7 @@
       </div>
     </div>
   </div>
+
+
 </body>
 </html>

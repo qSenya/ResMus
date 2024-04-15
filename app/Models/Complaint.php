@@ -17,4 +17,10 @@ class Complaint extends Model
         'status_id',
         'updated_at'
     ];
+
+
+    public function song()
+    {
+    return $this->belongsTo(Song::class, 'song_id', 'id');
+    }
 }

@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('role')->references('id')->on('roles');
             $table->string('nickname')->unique();
-            $table->integer('complaints_count')->default(0);
             $table->string('avatar');
-            $table->string('login')->unique();
+            $table->string('email')->unique()->default(' ');
             $table->string('password');
             $table->timestamps();
         });

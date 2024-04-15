@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
+            $table->integer('complaints_count')->default(0);
             $table->string('nickname');
             $table->string('name');
             $table->string('image');

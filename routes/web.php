@@ -27,11 +27,16 @@ Route::post('/add_song', [Controller::class, "add_song"]);
 Route::get('/song_redact/{id}', [Controller::class, "song_redact"]);
 Route::post('/redact/{song}', [Controller::class, "change_song"]);
 Route::get('/song_delete/{song}', [Controller::class, "song_delete"]);
+Route::get('/lk-redact/{id}', [UserController::class, "lk_redact"]);
+Route::post('/redact_profile/{user}', [UserController::class, "redact_profile"]);
 
 
 Route::get('/complaint/{id}', [Controller::class, "complaint"]);
 Route::get('/create_complaint', [Controller::class, "create_complaint"]);
-// Route::get('/complaints', [Controller::class, "complaint_index"]);
 
-Route::get('/admin', [AdminController::class, "index"]);
-Route::post('/add_genre', [AdminController::class, "create_genre"]);
+
+Route::get('/complaint/{id}/accept', [AdminController::class, "complaint_accept"]);
+Route::get('/complaint/{id}/decline', [AdminController::class, "complaint_decline"]);
+Route::get('/admin', [AdminController::class, "admin_signin"]);
+Route::get('/admin_index', [AdminController::class, "index"]);
+Route::get('/add_genre', [AdminController::class, "create_genre"]);
